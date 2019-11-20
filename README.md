@@ -55,7 +55,7 @@ Note: we recommend putting those values in your repo secrets.
       with:
         release-branch-name: "master"
 
-        maven-repo-server-id: f${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
+        maven-repo-server-id: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
         maven-repo-server-username: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
         maven-repo-server-password: ${{ secrets.MVN_REPO_PRIVATE_REPO_PASSWORD }}
 
@@ -77,7 +77,7 @@ Here is an example with all of the options at the same time:
         gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
 
-        maven-repo-server-id: f${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
+        maven-repo-server-id: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
         maven-repo-server-username: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
         maven-repo-server-password: ${{ secrets.MVN_REPO_PRIVATE_REPO_PASSWORD }}
 
