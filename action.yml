@@ -1,5 +1,5 @@
 # action.yml
-name: 'OB release'
+name: 'Maven release'
 author: https://github.com/qcastel
 description: 'Release our java libraries for open banking'
 branding:
