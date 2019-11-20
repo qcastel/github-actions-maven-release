@@ -1,7 +1,7 @@
 # action.yml
 name: 'Maven release'
 author: https://github.com/qcastel
-description: 'Release our java libraries for open banking'
+description: 'Release your java application'
 branding:
   color: blue
   icon: unlock
