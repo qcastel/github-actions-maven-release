@@ -93,7 +93,7 @@ Here is an example with all of the options at the same time:
 
 We welcome contributions! If your usecase is slightly different than us, just suggest a RFE or contribute to this repo directly.
 
-## Setup your gpg key
+## Setup the bot gpg key
 
 Setting up a gpg key for your bot is a good security feature. This way, you can enforce sign commits in your repo,
 even for your release bot.
