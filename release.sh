@@ -19,24 +19,33 @@ if [[ -n "$RELEASE_BRANCH_NAME" && ! "${branch}" = "$RELEASE_BRANCH_NAME" ]]; th
 fi
 
 # Making sure we are on top of the branch
+echo "Git checkout branch ${GITHUB_REF##*/}"
 git checkout ${GITHUB_REF##*/}
+echo "Git reset hard to ${GITHUB_SHA}"
 git reset --hard ${GITHUB_SHA}
 
 # This script will do a release of the artifact according to http://maven.apache.org/maven-release/maven-release-plugin/
-git config --global user.email "$GIT_RELEASE_BOT_EMAIL";
+echo "Setup git user name to '$GIT_RELEASE_BOT_NAME'"
 git config --global user.name "$GIT_RELEASE_BOT_NAME";
+echo "Setup git user email to '$GIT_RELEASE_BOT_EMAIL'"
+git config --global user.email "$GIT_RELEASE_BOT_EMAIL";
 
 # Setup GPG
+
 if [[ $GPG_ENABLED ]]; then
+     echo "Enable GPG signing in git config"
      git config --global commit.gpgsign true
+     echo "Using the GPG key ID $GPG_KEY_ID"
      git config --global user.signingkey $GPG_KEY_ID
      echo "GPG_KEY_ID = $GPG_KEY_ID"
-
+     echo "Import the GPG key"
      echo  "$GPG_KEY" | base64 -d > private.key
      gpg --import ./private.key
-     rm private.key
+     rm ./private.key
+else
+  echo "GPG signing is not enabled"
 fi
-echo "JAVA_HOME = $JAVA_HOME"
+echo "Override the java home as gitactions is seting up the JAVA_HOME env variable"
 JAVA_HOME="/usr/local/openjdk-11/"
 # Setup maven local repo
 if [[ -n "$MAVEN_LOCAL_REPO_PATH" ]]; then
@@ -44,5 +53,7 @@ if [[ -n "$MAVEN_LOCAL_REPO_PATH" ]]; then
 fi
 
 # D0 the release
+echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
 mvn $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
+echo "Do mvn release:perform with arguments $MAVEN_ARGS"
 mvn $MAVEN_REPO_LOCAL release:perform -B -Darguments="$MAVEN_ARGS"
