@@ -34,6 +34,7 @@ if [[ $GPG_ENABLED ]]; then
 
      echo  "$GPG_KEY" | base64 -d > private.key
      gpg --import ./private.key
+     rm private.key
 fi
 echo "JAVA_HOME = $JAVA_HOME"
 JAVA_HOME="/usr/local/openjdk-11/"
