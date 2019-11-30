@@ -52,16 +52,6 @@ if [[ -n "$MAVEN_LOCAL_REPO_PATH" ]]; then
      MAVEN_REPO_LOCAL="-Dmaven.repo.local=$MAVEN_LOCAL_REPO_PATH"
 fi
 
-# Replace variable `{project.version}` in readme
-PROJECT_VERSION=$(mvn -q \
-    -Dexec.executable=echo \
-    -Dexec.args='${project.version}' \
-    --non-recursive \
-    exec:exec)
-sed -e "s/{project.version}/${PROJECT_VERSION}/" ./README.md >  tmpfile ; mv tmpfile README.md
-git add README.md
-git commit -m "Change version in readme to $PROJECT_VERSION"
-
 # Do the release
 echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
 mvn $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
