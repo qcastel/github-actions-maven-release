@@ -13,7 +13,7 @@ For a simple repo with not much protection and private dependency, you can do:
 
 ```
  - name: Release
-      uses: qcastel/github-actions-maven/actions/release@master
+      uses: qcastel/github-actions-maven-release@master
       with:
         release-branch-name: "master"
         
@@ -34,7 +34,7 @@ if you haven't setup a GPG key yet, see next section
 
 ```
  - name: Release
-      uses: qcastel/github-actions-maven/actions/release@master
+      uses: qcastel/github-actions-maven-release@master
       with:
         release-branch-name: "master"
         gpg-enabled: "true"
@@ -53,7 +53,7 @@ Note: we recommend putting those values in your repo secrets.
 
 ```
  - name: Release
-      uses: qcastel/github-actions-maven/actions/release@master
+      uses: qcastel/github-actions-maven-release@master
       with:
         release-branch-name: "master"
 
@@ -71,7 +71,7 @@ Here is an example with all of the options at the same time:
 
 ```
  - name: Release
-      uses: qcastel/github-actions-maven/actions/release@master
+      uses: qcastel/github-actions-maven-release@master
       with:
         release-branch-name: "master"
 
