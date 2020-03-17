@@ -16,10 +16,10 @@ For a simple repo with not much protection and private dependency, you can do:
       uses: qcastel/github-actions-maven-release@master
       with:
         release-branch-name: "master"
-        
+
         git-release-bot-name: "release-bot"
         git-release-bot-email: "release-bot@example.com"
-        
+
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
 You can add some maven options, which is handy for skipping tests:
@@ -43,7 +43,7 @@ if you haven't setup a GPG key yet, see next section
 
         git-release-bot-name: "release-bot"
         git-release-bot-email: "release-bot@example.com"
-        
+
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
 
@@ -63,7 +63,7 @@ Note: we recommend putting those values in your repo secrets.
 
         git-release-bot-name: "release-bot"
         git-release-bot-email: "release-bot@example.com"
-        
+
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
 
@@ -87,7 +87,7 @@ Here is an example with all of the options at the same time:
 
         git-release-bot-name: "release-bot"
         git-release-bot-email: "release-bot@example.com"
-        
+
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
 
@@ -123,7 +123,7 @@ uid                 [ultimate] bot-openbanking4-dev (it's the bot openbanking4.d
 ssb   rsa2048/7D1523C9952204C1 2019-11-28 [E]
 
 ```
-The key ID for my bot is 3EFC3104C0088B08. Add this value into your github secret for this repo, under `GITHUB_GPG_KEY_ID` 
+The key ID for my bot is 3EFC3104C0088B08. Add this value into your github secret for this repo, under `GITHUB_GPG_KEY_ID`
 PS: the key id is not really a secret but we found more elegant to store it there than in plain text in the github action yml
 
 ### Get the GPG private key
@@ -133,7 +133,7 @@ Now we need the raw key and base64 encode
 gpg --export-secret-keys --armor 3EFC3104C0088B08 | base64
 ```
 
-Copy the result and add it in your githup repo secrets under `GITHUB_GPG_KEY`.
+Copy the result and add it in your github repo secrets under `GITHUB_GPG_KEY`.
 
 Go the bot account in github and import this GPG key into its profile.
 
