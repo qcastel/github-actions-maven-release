@@ -52,8 +52,15 @@ if [[ -n "$MAVEN_LOCAL_REPO_PATH" ]]; then
      MAVEN_REPO_LOCAL="-Dmaven.repo.local=$MAVEN_LOCAL_REPO_PATH"
 fi
 
+if [[ -n "$MAVEN_REPO_SERVER_ID" ]]; then
+     MAVEN_SETTINGS_OPTION="-s /usr/share/maven/conf/settings-with-repo.xml"
+fi
+
+echo "Move to folder $MAVEN_PROJECT_FOLDER"
+cd $MAVEN_PROJECT_FOLDER
+
 # Do the release
 echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
-mvn $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
+mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
 echo "Do mvn release:perform with arguments $MAVEN_ARGS"
-mvn $MAVEN_REPO_LOCAL release:perform -B -Darguments="$MAVEN_ARGS"
+mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL release:perform -B -Darguments="$MAVEN_ARGS"

@@ -91,6 +91,12 @@ Here is an example with all of the options at the same time:
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
 
+You may also be in the case where you got more than one maven projects inside the repo. We added an option that will make the release job move to the according directy before running the release:
+
+```
+        maven-project-folder: "sub-folder/"
+```
+
 We welcome contributions! If your usecase is slightly different than us, just suggest a RFE or contribute to this repo directly.
 
 ## Setup the bot gpg key
@@ -136,6 +142,7 @@ gpg --export-secret-keys --armor 3EFC3104C0088B08 | base64
 Copy the result and add it in your github repo secrets under `GITHUB_GPG_KEY`.
 
 Go the bot account in github and import this GPG key into its profile.
+
 
 # License
 The Dockerfile and associated scripts and documentation in this project are released under the MIT License.

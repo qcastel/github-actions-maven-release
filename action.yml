@@ -38,6 +38,10 @@ inputs:
     description: 'The maven arguments for the release'
     required: false
     default: ''
+  maven-project-folder:
+    description: 'You may have more than one maven projects inside the repo. This option allows you to specify the folder for which you want to trigger the release'
+    required: false
+    default: './'
   git-release-bot-name:
     description: 'The git user name for commiting the release'
     required: true
@@ -45,6 +49,7 @@ inputs:
     description: 'The git user email for commiting the release'
     required: true
 
+      
   access-token:
     description: 'Github access token. https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
     required: true
@@ -65,7 +70,9 @@ runs:
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
     MAVEN_REPO_SERVER_PASSWORD: ${{ inputs.maven-repo-server-password }}
-    MAVEN_ARGS: ${{ inputs.maven-args }}
+    MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
+
+    MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
 
     GIT_RELEASE_BOT_NAME: ${{ inputs.git-release-bot-name }}
     GIT_RELEASE_BOT_EMAIL: ${{ inputs.git-release-bot-email }}
