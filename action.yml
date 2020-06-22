@@ -75,6 +75,7 @@ runs:
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
     MAVEN_REPO_SERVER_PASSWORD: ${{ inputs.maven-repo-server-password }}
     MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
+    MAVEN_ARGS: ${{ inputs.maven-args }}
 
     SKIP_PERFORM: ${{ inputs.skip-perform }}
 
