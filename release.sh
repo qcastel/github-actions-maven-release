@@ -46,7 +46,7 @@ else
   echo "GPG signing is not enabled"
 fi
 echo "Override the java home as gitactions is seting up the JAVA_HOME env variable"
-JAVA_HOME="/usr/local/openjdk-11/"
+JAVA_HOME="/usr/java/openjdk-14/"
 # Setup maven local repo
 if [[ -n "$MAVEN_LOCAL_REPO_PATH" ]]; then
      MAVEN_REPO_LOCAL="-Dmaven.repo.local=$MAVEN_LOCAL_REPO_PATH"
