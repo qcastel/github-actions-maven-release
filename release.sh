@@ -59,11 +59,18 @@ fi
 echo "Move to folder $MAVEN_PROJECT_FOLDER"
 cd $MAVEN_PROJECT_FOLDER
 
-# Do the release
+# prepare release
 echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
 mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
 
-if [[ $SKIP_PERFORM == "false" ]]; then
+# do release if prepare did not fail
+if [[ ("$?" -eq 0) && ($SKIP_PERFORM == "false") ]]; then
      echo "Do mvn release:perform with arguments $MAVEN_ARGS"
      mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL release:perform -B -Darguments="$MAVEN_ARGS"
+fi
+
+# rollback release if prepare or perform failed
+if [[ "$?" -ne 0 ]] ; then
+     echo "Rolling back release after failure"
+     mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:rollback -B -Darguments="$MAVEN_ARGS"
 fi
