@@ -1,4 +1,3 @@
-FROM qcastel/maven-git-gpg:latest
+FROM qcastel/maven-release:0.0.7
 
-COPY ./release.sh /usr/local/bin
-COPY ./settings.xml /usr/share/maven/conf/settings-with-repo.xml
+COPY ./release-github-actions.sh /usr/local/bin

@@ -9,7 +9,7 @@ inputs:
   release-branch-name:
     description: 'Filter the branch to execute the release on'
     required: false
-
+    default: 'master'
   gpg-enabled: 
     description: 'Enable gpg signing'
     required: false
@@ -21,12 +21,23 @@ inputs:
     description: 'The GPG key'
     required: false
 
-  maven-local-repo-path: 
-    description: 'The maven local repository path'
+  ssh-private-key:
+    description: 'The SSH private key used during the maven release git commit'
     required: false
-    default: '$M2_HOME/repository'
+
+  git-release-bot-name:
+    description: 'The git user name for committing the release'
+    required: false
+    default: 'release-bot'
+  git-release-bot-email:
+    description: 'The git user email for committing the release'
+    required: false
+    default: 'release-bot@github.com'
+
+
+
   maven-repo-server-id:
-    description: 'Maven server repository id to push the artefacts to'
+    description: 'Maven server repository id to push the artifacts to'
     required: true
   maven-repo-server-username:
     description: 'Maven server repository username'
@@ -42,44 +53,65 @@ inputs:
     description: 'You may have more than one maven projects inside the repo. This option allows you to specify the folder for which you want to trigger the release'
     required: false
     default: './'
-  git-release-bot-name:
-    description: 'The git user name for commiting the release'
-    required: true
-  git-release-bot-email:
-    description: 'The git user email for commiting the release'
-    required: true
+  maven-options:
+    description: 'The maven options for the release'
+    required: false
+    default: ''
+
   skip-perform:
     description: 'Skip maven release perform'
     required: false
     default: false
 
-      
+  version-major:
+    description: 'Increment the major version number'
+    required: false
+    default: false
+  version-minor:
+    description: 'Increment the minor version number'
+    required: false
+    default: false
+
+  m2-home-folder:
+    description: 'M2 home folder'
+    required: false
+    default: '/root/.m2'
+
+
   access-token:
     description: 'Github access token. https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
-    required: true
+    required: false
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args: 
-    - release.sh
+    - release-github-actions.sh
   env:
-    RELEASE_BRANCH_NAME: ${{ inputs.release-branch-name }}
-
     GPG_ENABLED: ${{ inputs.gpg-enabled }}
     GPG_KEY_ID: ${{ inputs.gpg-key-id }}
     GPG_KEY: ${{ inputs.gpg-key }}
 
-    MAVEN_LOCAL_REPO_PATH: ${{ inputs.maven-local-repo-path }}
+    SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
+    SSH_ROOT_FOLDER: /root/.ssh
+
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
     MAVEN_REPO_SERVER_PASSWORD: ${{ inputs.maven-repo-server-password }}
     MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
     MAVEN_ARGS: ${{ inputs.maven-args }}
+    MAVEN_OPTION: ${{ inputs.maven-options}}
 
-    SKIP_PERFORM: ${{ inputs.skip-perform }}
+    M2_HOME_FOLDER: ${{ inputs.m2-home-folder}}
 
     GIT_RELEASE_BOT_NAME: ${{ inputs.git-release-bot-name }}
     GIT_RELEASE_BOT_EMAIL: ${{ inputs.git-release-bot-email }}
 
+    SKIP_PERFORM: ${{ inputs.skip-perform }}
+
     GITHUB_ACCESS_TOKEN: ${{ inputs.access-token }}
+
+    VERSION_MAJOR: ${{ inputs.version-major }}
+    VERSION_MINOR: ${{ inputs.version-minor }}
+
+    RELEASE_BRANCH_NAME: ${{ inputs.release-branch-name }}
