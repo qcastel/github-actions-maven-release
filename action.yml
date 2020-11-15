@@ -117,7 +117,7 @@ runs:
 
     SKIP_PERFORM: ${{ inputs.skip-perform }}
 
-    GITHUB_ACCESS_TOKEN: ${{ inputs.access-token }}
+    GITREPO_ACCESS_TOKEN: ${{ inputs.access-token }}
 
     VERSION_MAJOR: ${{ inputs.version-major }}
     VERSION_MINOR: ${{ inputs.version-minor }}
