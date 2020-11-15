@@ -140,7 +140,7 @@ docker run -it qcastel/maven-release:latest  bash
 ```bash
 ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
 export SSH_PRIVATE_KEY=$(base64 /tmp/sshkey)
-export SSH_PUBLIC_KEY=$(base64 /tmp/sshkey.pub)
+export SSH_PUBLIC_KEY=$(cat /tmp/sshkey.pub)
 echo -n "Copy the following SSH private key and add it to your repo secrets under the name 'SSH_PRIVATE_KEY':"
 echo $SSH_PRIVATE_KEY
 echo "Copy the encoded SSH public key and add it as one of your repo deploy keys with write access:"
