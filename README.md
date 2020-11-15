@@ -83,12 +83,47 @@ Personally, I usually the prefix `[ci skip]` which allows me to skip more easily
 
 ## Setup the maven release github actions
 
+### Choose your version of this github action
+
+If it's your first time using a github action, I invite you having a quick read to the github official recommendations:
+https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/security-hardening-for-github-actions#using-third-party-actions
+
+It's important you understand how the versioning work and the risk/compromise of using master/tags/commit hash
+
+If you are adventurous and like to be always on top of this github action, you can use the reference *master* :
+
+```
+ - name: Release
+      uses: qcastel/github-actions-maven-release@master
+      with:
+```
+
+If you are more reserve, you can use a tag instead. You can find the list of the tags for this github action here:
+
+https://github.com/qcastel/github-actions-maven-release/tags
+
+To use a tag:
+
+```
+ - name: Release
+      uses: qcastel/github-actions-maven-release@TAG_NAME
+      with:
+```
+
+If you are concerned about the security of this github action, you can also move to a commit hash:
+
+```
+ - name: Release
+      uses: qcastel/github-actions-maven-release@COMMIT_HASH
+      with:
+```
+
+
+
 ### Basic setup
 For a simple repo with not much protection and private dependency, you can do:
 
 ```yaml
- - name: Release
-      uses: qcastel/github-actions-maven-release@master
       with:
         access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 ```
