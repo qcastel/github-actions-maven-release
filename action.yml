@@ -20,9 +20,15 @@ inputs:
   gpg-key: 
     description: 'The GPG key'
     required: false
+  gpg-passphrase:
+    description: 'The GPG passphrase'
+    required: false
 
   ssh-private-key:
     description: 'The SSH private key used during the maven release git commit'
+    required: false
+  ssh-passphrase:
+    description: 'The SSH passphrase'
     required: false
 
   git-release-bot-name:
@@ -91,9 +97,11 @@ runs:
     GPG_ENABLED: ${{ inputs.gpg-enabled }}
     GPG_KEY_ID: ${{ inputs.gpg-key-id }}
     GPG_KEY: ${{ inputs.gpg-key }}
+    GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
 
     SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
     SSH_ROOT_FOLDER: /root/.ssh
+    SSH_PASSPHRASE: ${{ inputs.ssh-passphrase }}
 
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}

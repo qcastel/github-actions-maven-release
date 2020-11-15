@@ -86,7 +86,7 @@ Personally, I usually the prefix `[ci skip]` which allows me to skip more easily
 ### Basic setup
 For a simple repo with not much protection and private dependency, you can do:
 
-```
+```yaml
  - name: Release
       uses: qcastel/github-actions-maven-release@master
       with:
@@ -98,11 +98,11 @@ For a simple repo with not much protection and private dependency, you can do:
 Although you may found better to use a SSH key instead. For this, generate an SSH key with the method of your choice, or use an existing one.
 Personally, I like generating an SSH inside a temporary docker image and configure it as a deploy key in my repository:
 
-```
+```bash
 docker run -it qcastel/maven-release:latest  bash
 ```
 
-```
+```bash
 ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
 export SSH_PRIVATE_KEY=$(base64 /tmp/sshkey)
 export SSH_PUBLIC_KEY=$(base64 /tmp/sshkey.pub)
@@ -126,6 +126,15 @@ Finally, setup the github action with:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
+
+If you want to set up a passphrase for your key:
+
+```yaml
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-passphrase: ${{ secrets.SSH_PASSPHRASE }}
+```
+
 
 ### log Timestamp
 
@@ -253,7 +262,7 @@ Note: we recommend putting those values in your repo secrets.
 
 You may also be in the case where you got more than one maven projects inside the repo. We added an option that will make the release job move to the according directly before running the release:
 
-```
+```yaml
     with:
         maven-project-folder: "sub-folder/"
 ```
@@ -271,16 +280,26 @@ even for your release bot.
 
 This github action needs the key ID and the key base64 encoded.
 
-```$xslt
-        gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
-        gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+```yaml
+        with:
+            gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
+            gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+```
+
+If you want to set up a passphrase:
+
+```yaml
+        with:
+            gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
+            gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+            gpg-passphrase: ${{ secrets.GITHUB_PASSPHRASE }} 
 ```
 
 ### Get the KID
 
 You can get the key ID doing the following:
 
-```$xslt
+```bash
 gpg --list-secret-keys --keyid-format LONG
 
 sec   rsa2048/3EFC3104C0088B08 2019-11-28 [SC]
@@ -295,7 +314,7 @@ PS: the key id is not really a secret but we found more elegant to store it ther
 ### Get the GPG private key
 
 Now we need the raw key and base64 encode
-```$xslt
+```bash
 gpg --export-secret-keys --armor 3EFC3104C0088B08 | base64
 ```
 
