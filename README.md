@@ -7,7 +7,9 @@ This github action is bot friendly: You can configure the credentials of a bot u
 The commits by the bot can also be signed, giving you the guaranty that only the bot can release in your repo. Additionally,
 this give you a clean git history by highlighting nicely which commits where resulting from your CI.
 
-**Support this github actions by staring this project.** Surprisingly, it seems to be the only way for the github market place to highlight popular github actions.
+## Supporting this github action
+
+Support this github action by staring this project. Surprisingly, it seems to be the only way for the github market place to highlight popular github actions.
 
 ## Features
 
