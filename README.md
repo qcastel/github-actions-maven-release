@@ -17,6 +17,7 @@ Maven release uses Git behind it, therefore there were a few features related in
 - Signing the commits (GPG) resulting from the maven release [[GPG](#setup-a-gpg-key)]
 - Authenticating to private repository using an SSH key [[SSH](#setup-with-ssh)]
 - Configuring the git username and email [[Bot](#customise-the-bot-name)]
+- Configuring the jdk version [[JDK](#jdk-version)]
 
 You may want to configure a bit maven too. We added the following features:
 - Specify the maven project path. In other words, if your maven project is not at the root of your repo, you can configure a sub path. [[Custom project path](#customise-the-m2-folder-path)] 
@@ -207,6 +208,38 @@ See https://maven.apache.org/maven-release/maven-release-plugin/prepare-mojo.htm
             maven-options: "-DbranchName=hotfix"
 ```
 
+### JDK version
+
+You may want to compile your project with a specific JDK version. You will need to specify the JAVa_HOME variable with the according value.
+If you need a specific jdk version that is not in the list, please raise an issue in this github action to request it.
+
+#### JDK 8
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-1.8-openjdk/
+```
+
+#### JDK 11
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
+```
+
+#### JDK 14
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-14-openjdk/
+```
+
+#### JDK 15
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-15-openjdk/
+```
 ### Customise the bot name
 
 You can simply customise the bot name as follows:
