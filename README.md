@@ -37,7 +37,7 @@ You may want to configure a bit maven too. We added the following features:
 For the maven releases, we got also some dedicated functionalities:
 - Skip the maven perform [[Skip perform](#skipping-perform)]
 - Roll back the maven perform if it failed to perform the release
-- Increment the major or minor version (by default, it's the path version that is increased) [[Major Minor version](#increase-major-or-minor-version)]
+- Increment the major or minor version (by default, it's the patch version that is increased) [[Major Minor version](#increase-major-or-minor-version)]
 
 
 # Usage
