@@ -254,7 +254,7 @@ You can simply customise the bot name as follows:
 ```
 
 ### Customise the default branch
-You may not release from your master branch. You can customise the branch name, here `release`, as follows:
+You may not want to release from your master branch, which is currently the default branch setup by this github action. You can customise the branch name you want to release on, here `release`, as follows:
 
 ```yaml
         with:
@@ -272,7 +272,7 @@ If for a reason, you need to skip the maven release perfom, you can disable it a
 
 
 ### Increase major or minor version
-By default, maven release will increase the path version. If you are interested to actually increment the major or minor version, you can use
+By default, maven release will increase the patch version. If you are interested to actually increment the major or minor version, you can use
 the following options:
 
 #### For major version increment
