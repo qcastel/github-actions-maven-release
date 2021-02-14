@@ -45,12 +45,15 @@ inputs:
   maven-repo-server-id:
     description: 'Maven server repository id to push the artifacts to'
     required: true
+    default: 'fake'
   maven-repo-server-username:
     description: 'Maven server repository username'
     required: true
+    default: 'fake'
   maven-repo-server-password:
     description: 'Maven server repository password'
     required: true
+    default: 'fake'
   maven-args:
     description: 'The maven arguments for the release'
     required: false
@@ -63,6 +66,19 @@ inputs:
     description: 'The maven options for the release'
     required: false
     default: ''
+
+  docker-registry-id:
+    description: 'The ID of your registry. For example, for docker hub, it is `registry.hub.docker.com`'
+    required: true
+    default: 'fake'
+  docker-registry-username:
+    description: 'The username for your docker registry'
+    required: true
+    default: 'fake'
+  docker-registry-password:
+    description: 'The password for your docker registry'
+    required: true
+    default: 'fake'
 
   skip-perform:
     description: 'Skip maven release perform'
@@ -109,6 +125,10 @@ runs:
     MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
     MAVEN_ARGS: ${{ inputs.maven-args }}
     MAVEN_OPTION: ${{ inputs.maven-options}}
+
+    DOCKER_REGISTRY_ID: ${{ inputs.docker-registry-id }}
+    DOCKER_REGISTRY_USERNAME: ${{ inputs.docker-registry-username }}
+    DOCKER_REGISTRY_PASSWORD: ${{ inputs.docker-registry-password }}
 
     M2_HOME_FOLDER: ${{ inputs.m2-home-folder}}
 
