@@ -11,6 +11,11 @@ this give you a clean git history by highlighting nicely which commits where res
 
 Support this github action by staring this project. Surprisingly, it seems to be the only way for the github market place to highlight popular github actions.
 
+## Sample repository
+
+We created a sample repository that will show you an example of how this github action can be used for releasing a Java application: 
+https://github.com/qcastel/github-actions-maven-release-sample
+
 ## Features
 
 Obviously, this github actions uses maven release plugin. Although, we did add on top a few features that you may like.
@@ -375,18 +380,43 @@ This github action needs the key ID and the key base64 encoded.
 
 ```yaml
         with:
-            gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
-            gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+            gpg-enabled: true
+            gpg-key-id: ${{ secrets.GPG_KEY_ID }}
+            gpg-key: ${{ secrets.GPG_KEY }}
 ```
 
 If you want to set up a passphrase:
 
 ```yaml
         with:
-            gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
-            gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
-            gpg-passphrase: ${{ secrets.GITHUB_PASSPHRASE }} 
+            gpg-enabled: true
+            gpg-key-id: ${{ secrets.GPG_KEY_ID }}
+            gpg-key: ${{ secrets.GPG_KEY }}
+            gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} 
 ```
+
+### Generate the key
+
+f you like how we created a SSH key pair, here is the same idea using a docker image to generate a GPG key:
+
+```bash
+docker run -it qcastel/maven-release:latest  bash
+```
+
+```bash
+cat >genkey-batch <<EOF
+ %no-protection
+ Key-Type: default
+ Subkey-Type: default
+ Name-Real: bot
+ Name-Email: bot@idhub.io
+ Expire-Date: 0
+EOF
+gpg --batch --gen-key genkey-batch
+```
+
+Note: Don't exit the docker container as we are not done yet.
+
 
 ### Get the KID
 
@@ -401,19 +431,24 @@ uid                 [ultimate] bot-openbanking4-dev (it's the bot openbanking4.d
 ssb   rsa2048/7D1523C9952204C1 2019-11-28 [E]
 
 ```
-The key ID for my bot is 3EFC3104C0088B08. Add this value into your github secret for this repo, under `GITHUB_GPG_KEY_ID`
+The key ID for my bot is 3EFC3104C0088B08. Add this value into your github secret for this repo, under `GPG_KEY_ID`
 PS: the key id is not really a secret but we found more elegant to store it there than in plain text in the github action yml
 
-### Get the GPG private key
+### Get the GPG public and private key
 
 Now we need the raw key and base64 encode
 ```bash
-gpg --export-secret-keys --armor 3EFC3104C0088B08 | base64
+
+echo 'Public key to add in your bot github account:'
+gpg --armor --export FFD651809B1889DF
+echo 'Private key to add to the CI secrets under GITHUB_GPG_KEY:'
+gpg --export-secret-keys --armor FFD651809B1889DF | base64
+
+exit
 ```
 
-Copy the result and add it in your github repo secrets under `GITHUB_GPG_KEY`.
-
-Go the bot account in github and import this GPG key into its profile.
+Copy the public key and import it to the bot account as a GPG key.
+Copy the private key and add it in your github repo secrets under `GPG_KEY`.
 
 
 # License
