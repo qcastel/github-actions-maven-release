@@ -1,5 +1,5 @@
 # action.yml
-name: 'Maven release'
+name: 'Java Maven release'
 author: https://github.com/qcastel
 description: 'Release your Java application and publish artifacts'
 branding:
