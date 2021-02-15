@@ -4,7 +4,7 @@ author: https://github.com/qcastel
 description: 'Release your java application'
 branding:
   color: blue
-  icon: unlock
+  icon: upload
 inputs:
   release-branch-name:
     description: 'Filter the branch to execute the release on'
