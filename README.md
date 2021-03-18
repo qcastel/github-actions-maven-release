@@ -273,7 +273,7 @@ If for a reason, you need to skip the maven release perfom, you can disable it a
 
 ```yaml
         with:
-            skip-perform: false
+            skip-perform: true
 ```
 
 
