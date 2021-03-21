@@ -39,7 +39,10 @@ inputs:
     description: 'The git user email for committing the release'
     required: false
     default: 'release-bot@github.com'
-
+  git-skip-sanity-check:
+    description: 'Skip the git fetch and reset executed for safety by this action'
+    required: false
+    default: 'false'
 
 
   maven-repo-server-id:
@@ -134,6 +137,7 @@ runs:
 
     GIT_RELEASE_BOT_NAME: ${{ inputs.git-release-bot-name }}
     GIT_RELEASE_BOT_EMAIL: ${{ inputs.git-release-bot-email }}
+    SKIP_GIT_SANITY_CHECK: ${{ inputs.git-skip-sanity-check }}
 
     SKIP_PERFORM: ${{ inputs.skip-perform }}
 
