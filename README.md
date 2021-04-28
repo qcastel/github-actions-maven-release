@@ -322,6 +322,18 @@ if you haven't setup a GPG key yet, see next section.
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
 ```
 
+In case you want to skip the GPG step, you can set `gpg-enabled: "false"` or if you prefer to have the same behaviour in your IDE, add this maven plugin in your `pom.xml` to skip GPG step in the release phase:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <version>1.6</version>
+    <configuration>
+        <skip>true</skip>
+    </configuration>
+</plugin>
+```
 
 ### Setup a private maven repository
 
