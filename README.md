@@ -218,7 +218,7 @@ See https://maven.apache.org/maven-release/maven-release-plugin/prepare-mojo.htm
 
 ### JDK version
 
-You may want to compile your project with a specific JDK version. You will need to specify the JAVa_HOME variable with the according value.
+You may want to compile your project with a specific JDK version. You will need to specify the JAVA_HOME variable with the according value.
 If you need a specific jdk version that is not in the list, please raise an issue in this github action to request it.
 
 #### JDK 8
