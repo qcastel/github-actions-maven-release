@@ -69,6 +69,10 @@ inputs:
     description: 'The maven options for the release'
     required: false
     default: ''
+  maven-development-version-number:
+    description: 'If define, this option allows you to define a custom version number, like \${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}-SNAPSHOT'
+    required: false
+    default: ''
 
   docker-registry-id:
     description: 'The ID of your registry. For example, for docker hub, it is `registry.hub.docker.com`'
@@ -128,6 +132,7 @@ runs:
     MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
     MAVEN_ARGS: ${{ inputs.maven-args }}
     MAVEN_OPTION: ${{ inputs.maven-options}}
+    MAVEN_DEVELOPMENT_VERSION_NUMBER: ${{ inputs.maven-development-version-number}}
 
     DOCKER_REGISTRY_ID: ${{ inputs.docker-registry-id }}
     DOCKER_REGISTRY_USERNAME: ${{ inputs.docker-registry-username }}

@@ -38,7 +38,7 @@ For the maven releases, we got also some dedicated functionalities:
 - Skip the maven perform [[Skip perform](#skipping-perform)]
 - Roll back the maven perform if it failed to perform the release
 - Increment the major or minor version (by default, it's the patch version that is increased) [[Major Minor version](#increase-major-or-minor-version)]
-
+- customise the version format completly [[Customize version](#customize-version)]
 
 # Usage
 
@@ -298,6 +298,19 @@ _1.0.0-SNAPSHOT -> 1.2.0-SNAPSHOT_
         with:
             version-minor: true
 ```
+
+### Customize version
+
+You may want to fully customize the version number. This option will allow you to fully take control on the version number format.
+
+For Example, you could decide to only have a 2 part version number like 0.2-SNAPSHOT.
+
+```yaml
+        with:
+            maven-development-version-number: "\${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}-SNAPSHOT"
+```
+
+
 
 #### Customise the M2 folder path
 
