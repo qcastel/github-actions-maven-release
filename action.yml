@@ -73,7 +73,7 @@ inputs:
     description: 'If define, this option allows you to define a custom development version number, like ${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}-SNAPSHOT'
     required: false
     default: ''
-  maven-releas-version-number:
+  maven-release-version-number:
     description: 'If define, this option allows you to define a custom release version number, like ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.0'
     required: false
     default: ''
