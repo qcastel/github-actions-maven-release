@@ -299,17 +299,27 @@ _1.0.0-SNAPSHOT -> 1.2.0-SNAPSHOT_
             version-minor: true
 ```
 
-### Customize version
+### Customize development version
 
-You may want to fully customize the version number. This option will allow you to fully take control on the version number format.
+You may want to fully customize the development version number. This option will allow you to fully take control on the version number format.
 
-For Example, you could decide to only have a 2 part version number like 0.2-SNAPSHOT.
+For Example, you could decide to only have a 2 part version number like `0.2-SNAPSHOT`.
 
 ```yaml
         with:
-            maven-development-version-number: "\${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}-SNAPSHOT"
+            maven-development-version-number: ${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}-SNAPSHOT
 ```
 
+### Customize release version
+
+You may want to fully customize the release version number. This option will allow you to fully take control on the version number format.
+
+For Example, you could decide to only have a trailing 0 for releases like `0.2.0`.
+
+```yaml
+        with:
+            maven-release-version-number: ${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.0
+```
 
 
 #### Customise the M2 folder path
