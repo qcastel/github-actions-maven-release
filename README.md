@@ -298,8 +298,9 @@ _1.0.0-SNAPSHOT -> 1.2.0-SNAPSHOT_
         with:
             version-minor: true
 ```
+### Customize version
 
-### Customize development version
+#### development version
 
 You may want to fully customize the development version number. This option will allow you to fully take control on the version number format.
 
@@ -310,7 +311,7 @@ For Example, you could decide to only have a 2 part version number like `0.2-SNA
             maven-development-version-number: ${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}-SNAPSHOT
 ```
 
-### Customize release version
+### Release version
 
 You may want to fully customize the release version number. This option will allow you to fully take control on the version number format.
 
