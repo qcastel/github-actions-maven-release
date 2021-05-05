@@ -137,6 +137,7 @@ runs:
     MAVEN_ARGS: ${{ inputs.maven-args }}
     MAVEN_OPTION: ${{ inputs.maven-options}}
     MAVEN_DEVELOPMENT_VERSION_NUMBER: ${{ inputs.maven-development-version-number}}
+    MAVEN_RELEASE_VERSION_NUMBER: ${{ inputs.maven-release-version-number}}
 
     DOCKER_REGISTRY_ID: ${{ inputs.docker-registry-id }}
     DOCKER_REGISTRY_USERNAME: ${{ inputs.docker-registry-username }}
