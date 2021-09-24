@@ -218,7 +218,7 @@ See https://maven.apache.org/maven-release/maven-release-plugin/prepare-mojo.htm
 
 ### JDK version
 
-You may want to compile your project with a specific JDK version. You will need to specify the JAVA_HOME variable with the according value.
+The default JDK version is JDK 17. Although you may want to compile your project with a specific JDK version. You will need to specify the JAVA_HOME variable with the according value.
 If you need a specific jdk version that is not in the list, please raise an issue in this github action to request it.
 
 #### JDK 8
@@ -255,6 +255,15 @@ env:
 env:
  JAVA_HOME: /usr/lib/jvm/java-16-openjdk/
 ```
+
+
+#### JDK 17
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
+```
+
 
 ### Customise the bot name
 
