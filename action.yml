@@ -46,17 +46,21 @@ inputs:
 
 
   maven-repo-server-id:
-    description: 'Maven server repository id to push the artifacts to'
-    required: true
-    default: 'fake'
+    description: '!!DEPRECATED: Use maven-servers instead!! Maven server repository id to push the artifacts to'
+    required: false
+    default: ''
   maven-repo-server-username:
-    description: 'Maven server repository username'
-    required: true
-    default: 'fake'
+    description: '!!DEPRECATED: Use maven-servers instead!! Maven server repository username'
+    required: false
+    default: ''
   maven-repo-server-password:
-    description: 'Maven server repository password'
-    required: true
-    default: 'fake'
+    description: '!!DEPRECATED: Use maven-servers instead!! Maven server repository password'
+    required: false
+    default: ''
+  maven-servers:
+    description: 'The maven server repositories, in a JSON format. Example: [{"id": "serverId1", "username": "username", "password": "password1", "privateKey": "privatekey1", "passphrase": "passphrase1"}, {"id": "serverId2", "username": "username2", "password": "password2"}]'
+    required: false
+    default: '[]'
   maven-args:
     description: 'The maven arguments for the release'
     required: false
@@ -133,6 +137,7 @@ runs:
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
     MAVEN_REPO_SERVER_PASSWORD: ${{ inputs.maven-repo-server-password }}
+    MAVEN_SERVERS: ${{ inputs.maven-servers }}
     MAVEN_PROJECT_FOLDER: ${{ inputs.maven-project-folder }}
     MAVEN_ARGS: ${{ inputs.maven-args }}
     MAVEN_OPTION: ${{ inputs.maven-options}}

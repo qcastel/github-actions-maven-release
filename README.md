@@ -28,7 +28,7 @@ Maven release uses Git behind it, therefore there were a few features related in
 
 You may want to configure a bit maven too. We added the following features:
 - Specify the maven project path. In other words, if your maven project is not at the root of your repo, you can configure a sub path. [[Custom project path](#customise-the-m2-folder-path)] 
-- Configure a private maven repository [[Private maven repo](#setup-a-private-maven-repository)]
+- Configure private maven server repositories [[Private maven repo](#Setup-private-maven-server-repositories)]
 - Configure a docker registry [[Docker registry](#setup-a-docker-registry)]
 - Setup custom maven arguments and/or options to be used when calling maven commands [[Maven options](#maven-options)]
 - Configure a custom M2 folder [[Custom M2](#customise-the-m2-folder-path)]
@@ -376,18 +376,40 @@ In case you want to skip the GPG step, you can set `gpg-enabled: "false"` or if 
 </plugin>
 ```
 
-### Setup a private maven repository
+### Setup private maven server repositories
 
 If you got a private maven repo to set up in the settings.xml, you can do:
 Note: we recommend putting those values in your repo secrets.
 
 ```yaml
       with:
-        maven-repo-server-id: your-maven-repo-id
-        maven-repo-server-username: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
-        maven-repo-server-password: ${{ secrets.MVN_REPO_PRIVATE_REPO_PASSWORD }}
+        maven-servers: ${{ secrets.MVN_REPO_SERVERS }}
 ```
 
+Github actions currently don't support arrays input format.
+This is why we choose to request the secret `MVN_REPO_SERVERS` to be a JSON containing the servers definition. Example:
+
+```json
+[
+  {
+    "id": "serverId1",
+    "username": "username",
+    "password": "password1",
+    "privateKey": "privatekey1",
+    "passphrase": "passphrase1"
+  },
+  {
+    "id": "serverId2",
+    "username": "username2",
+    "password": "password2"
+  }
+]
+```
+
+You will need to put the JSON in one line:
+```bash
+MVN_REPO_SERVERS='[{"id": "serverId1", "username": "username", "password": "password1", "privateKey": "privatekey1", "passphrase": "passphrase1"}, {"id": "serverId2", "username": "username2", "password": "password2"}]'
+```
 
 ### Setup a docker registry
 
