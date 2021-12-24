@@ -1,3 +1,3 @@
-FROM qcastel/maven-release:0.0.26
+FROM qcastel/maven-release:0.0.27
 
 COPY ./release-github-actions.sh /usr/local/bin
