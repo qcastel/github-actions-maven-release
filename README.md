@@ -294,9 +294,7 @@ If for a reason, you need to skip the maven release perfom, you can disable it a
 ```
 
 
-### Increase major or minor version
-By default, maven release will increase the patch version. If you are interested to actually increment the major or minor version, you can use
-the following options:
+### Increase major, minor or patch version
 
 #### For major version increment
 
@@ -315,6 +313,20 @@ _1.0.0-SNAPSHOT -> 1.2.0-SNAPSHOT_
         with:
             version-minor: true
 ```
+
+#### For patch version increment
+
+As the patch version is the default version number increased, you don't need to specify any additional properties.
+
+Although if you prefer to be explicit, you can use the following option:
+
+_1.0.0-SNAPSHOT -> 1.0.1-SNAPSHOT_
+
+```yaml
+        with:
+            version-patch: true
+```
+
 ### Customize version
 
 #### development version

@@ -108,6 +108,10 @@ inputs:
     description: 'Increment the minor version number'
     required: false
     default: false
+  version-patch:
+    description: 'Increment the patch version number <- By default, we will increase the patch version'
+    required: false
+    default: false
 
   m2-home-folder:
     description: 'M2 home folder'
@@ -160,5 +164,6 @@ runs:
 
     VERSION_MAJOR: ${{ inputs.version-major }}
     VERSION_MINOR: ${{ inputs.version-minor }}
+    VERSION_PATCH: ${{ inputs.version-patch }}
 
     RELEASE_BRANCH_NAME: ${{ inputs.release-branch-name }}
