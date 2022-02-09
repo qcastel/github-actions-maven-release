@@ -181,6 +181,21 @@ If you want to set up a passphrase for your key:
           ssh-passphrase: ${{ secrets.SSH_PASSPHRASE }}
 ```
 
+#### SSH known hosts
+
+The current github actions support by default the following known hosts:
+
+- `github.com`
+- `gitlab.com`
+- `bitbucket.org`
+
+Although you may want to additional one, using the following properties:
+
+```yaml
+        with:
+          ssh-extra-known-host: "my-awesome-private-git-host.com"
+```
+
 
 ### log Timestamp
 

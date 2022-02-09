@@ -30,6 +30,9 @@ inputs:
   ssh-passphrase:
     description: 'The SSH passphrase'
     required: false
+  ssh-extra-known-host:
+    description: 'Addtion SSH known host'
+    required: false
 
   git-release-bot-name:
     description: 'The git user name for committing the release'
@@ -137,6 +140,7 @@ runs:
     SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
     SSH_ROOT_FOLDER: /root/.ssh
     SSH_PASSPHRASE: ${{ inputs.ssh-passphrase }}
+    SSH_EXTRA_KNOWN_HOST: ${{ inputs.ssh-extra-known-host }}
 
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
