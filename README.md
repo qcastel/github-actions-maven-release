@@ -135,9 +135,13 @@ If you are concerned about the security of this github action, you can also move
 For a simple repo with not much protection and private dependency, you can do:
 
 ```yaml
+      env:
+       JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
       with:
-        access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+       ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
+
+You will need to follow the `Setup with SSH` section to setup the `SSH_PRIVATE_KEY` accordingly.
 
 ### Setup with SSH
 
