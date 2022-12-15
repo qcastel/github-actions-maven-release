@@ -31,7 +31,10 @@ inputs:
     description: 'The SSH passphrase'
     required: false
   ssh-extra-known-host:
-    description: 'Addtion SSH known host'
+    description: 'Additional SSH known host'
+    required: false
+  ssh-ignore-default-hosts:
+    description: 'Do not add the default SSH known hosts'
     required: false
 
   git-release-bot-name:
@@ -141,6 +144,7 @@ runs:
     SSH_ROOT_FOLDER: /root/.ssh
     SSH_PASSPHRASE: ${{ inputs.ssh-passphrase }}
     SSH_EXTRA_KNOWN_HOST: ${{ inputs.ssh-extra-known-host }}
+    SSH_IGNORE_DEFAULT_HOSTS: ${{ inputs.ssh-ignore-default-hosts }}
 
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
     MAVEN_REPO_SERVER_USERNAME: ${{ inputs.maven-repo-server-username }}
