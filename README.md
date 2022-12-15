@@ -200,6 +200,11 @@ Although you may want to additional one, using the following properties:
           ssh-extra-known-host: "my-awesome-private-git-host.com"
 ```
 
+You can also disable the default hosts (for example, if you are behind a corporate proxy) like so:
+```yaml
+        with:
+          ssh-ignore-default-hosts: true
+```
 
 ### log Timestamp
 
