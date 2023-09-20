@@ -288,6 +288,12 @@ env:
  JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
 ```
 
+#### JDK 21
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-21-openjdk/
+```
 
 ### Customise the bot name
 
