@@ -295,6 +295,13 @@ env:
  JAVA_HOME: /usr/lib/jvm/java-21-openjdk/
 ```
 
+#### JDK 25
+
+```yaml
+env:
+ JAVA_HOME: /usr/lib/jvm/java-25-openjdk/
+```
+
 ### Customise the bot name
 
 You can simply customise the bot name as follows:
